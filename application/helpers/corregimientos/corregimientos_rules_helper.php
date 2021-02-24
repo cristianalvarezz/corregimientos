@@ -18,12 +18,12 @@ if(!function_exists('obtenerReglasCorregimientos')){
             array(
                 'field' => 'municipio',
                 'label' => 'Nombre del municipio',
-                'rules' => 'required|min_length[3]|max_length[50]|alpha_dash',
+                'rules' => 'required|min_length[3]|max_length[50]|alpha_numeric_spaces',
                 'errors' => array(
                     'required' => 'El %s es requerido.',
                     'min_length' => 'El %s contiene muy pocos caracteres',
                     'max_length' => 'El %s contiene muchos caracteres',
-                    'alpha_dash' => 'El %s contiene caracteres no alfabeticos'
+                    'alpha_numeric_spaces' => 'El %s contiene caracteres no alfabeticos'
                 )
             ),
 
@@ -42,7 +42,7 @@ if(!function_exists('obtenerReglasCorregimientos')){
             array(
                 'field' => 'pobladores',
                 'label' => 'Número de pobladores aproximado',
-                'rules' => 'required|min_length[1]|max_length[5]|is_natural|greater_than[0]|less_than[1000000]',
+                'rules' => 'required|min_length[1]|max_length[10]|is_natural|greater_than[0]|less_than[1000000]',
                 'errors' => array(
                     'required' => 'La %s es requerido.',
                     'min_length' => 'El %s contiene muy pocos caracteres',
@@ -88,7 +88,7 @@ if(!function_exists('obtenerReglasCorregimientos')){
             array(
                 'field' => 'nautoridadprincipal',
                 'label' => 'Nombre autoridad principal',
-                'rules' => 'required|min_length[3]|max_length[50]|alpha_numeric_spaces',
+                'rules' => 'required|min_length[3]|max_length[500]|alpha_numeric_spaces',
                 'errors' => array(
                     'required' => 'El %s es requerido.',
                     'min_length' => 'El %s contiene muy pocos caracteres',
@@ -131,7 +131,7 @@ if(!function_exists('obtenerReglasCorregimientos')){
             array(
                 'field' => 'codigodane',
                 'label' => 'Código del Dane',
-                'rules' => 'required|min_length[1]|max_length[5]|is_natural|greater_than[0]|less_than[1000000]',
+                'rules' => 'required|min_length[1]|max_length[50]|is_natural|greater_than[0]|less_than[1000000]',
                 'errors' => array(
                     'required' => 'EL %s es requerido.',
                     'min_length' => 'El %s contiene muy pocos caracteres',
