@@ -15,7 +15,12 @@ class Formulario extends CI_Controller
 	}
 	public function index()
 	{
-		$this->load->view('formulario');
+		$this->getTemplate($this->load->view('accionesFormulario/formulario','',TRUE));
+	}
+	public function mostrarCorregimientos(){
+		$data = $this->ModelsCorregimientos->obtenerCorregimientos();
+		$this->getTemplate($this->load->view('accionesFormulario/mostrarCorregimientos',array('data'=>$data),TRUE));
+
 	}
 	public function store()
 	{
@@ -62,4 +67,15 @@ class Formulario extends CI_Controller
 			redirect('formulario');
 		}
 	}
+	public function getTemplate($view){
+        $data = array(
+            'head' => $this->load->view('layout/head','',TRUE),
+            'nav' => $this->load->view('layout/nav','',TRUE),
+            'aside' => $this->load->view('layout/aside','',TRUE),
+            'content' => $view,
+            'footer' => $this->load->view('layout/footer','',TRUE),
+        );
+
+        $this->load->view('dashboard',$data);
+    }
 }

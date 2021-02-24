@@ -2,11 +2,11 @@
 <?= $nav ?>
 <div class="container-fluid">
     <div class="row">
-        <?= $aside ?>
+       
 
         <!-- CONTENT -->
-        <main class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <!-- <h1 class="is-title">Aqui va el contenido</h1>  -->
+        <main class="col-md-12 ml-sm-auto col-lg-12 pt-12 px-12">
+        
             <?= $content ?>
         </main>
 
