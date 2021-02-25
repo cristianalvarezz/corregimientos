@@ -1,6 +1,5 @@
 <?php
 
-if(!function_exists('obtenerReglasCorregimientos')){
     function obtenerReglasCorregimientos(){
         return array(
             array(
@@ -56,11 +55,11 @@ if(!function_exists('obtenerReglasCorregimientos')){
             array(
                 'field' => 'ubicacionlatitud',
                 'label' => 'Ubicación aproximada latitud ',
-                'rules' => 'required|min_length[1]|max_length[10]',
+                'rules' => 'required|min_length[1]|max_length[100]',
                 'errors' => array(
                     'required' => 'La %s es requerido.',
-                    'min_length' => 'El %s contiene muy pocos caracteres',
-                    'max_length' => 'El %s contiene muchos caracteres',
+                    'min_length' => 'La %s contiene muy pocos caracteres',
+                    'max_length' => 'La %s contiene muchos caracteres',
                     
                 )
             ),
@@ -77,14 +76,7 @@ if(!function_exists('obtenerReglasCorregimientos')){
               
                 )
             ),
-            array(
-                'field' => 'longitud',
-                'label' => 'longitud (tomada con el celular)',
-                'rules' => 'required',
-                'errors' => array(
-                    'required' => 'La %s es requerido.',
-                )
-            ),
+      
             array(
                 'field' => 'nautoridadprincipal',
                 'label' => 'Nombre autoridad principal',
@@ -158,4 +150,3 @@ if(!function_exists('obtenerReglasCorregimientos')){
 
         );
     }
-}

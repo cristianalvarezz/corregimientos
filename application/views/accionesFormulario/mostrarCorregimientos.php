@@ -1,4 +1,5 @@
 <body>
+
     <!-- BARRA DE NAVEGACION -->
     <div style="height: 30px;"></div>
     <div class="container-fluid">
@@ -8,10 +9,9 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text"><i class="bi bi-search"></i></div>
                     </div>
-                    <input type="text" class="form-control " id="inlineFormInputGroup">
-                    <select class="form-control col-md-4 " aria-label="Default select example" name="dato">
-                        <option selected>Buscar por</option>
-                        <option value="nombrecorregimiento">Nombre del Corregimiento</option>
+                    <input type="text" class="form-control " id="inlineFormInputGroup" >
+                    <select name="corregimiento" class="custom-select">
+                        <option value="nombrecorregimiento" <?= $dato = "nombrecorregimiento"; ?>>Nombre del Corregimiento</option>
                         <option value="municipio">Municipio</option>
                         <option value="veredas">Veredas que lo componen</option>
                         <option value="pobladores">Número de pobladores aproximado</option>
@@ -25,7 +25,8 @@
                         <option value="codigodane">Código Dane</option>
                         <option value="numeroadministrativo">Número acto administrativo</option>
                     </select>
-                    <button class="btn btn-light" href="<?= base_url('formulario/editar') ?>" role="button">Buscar</button>
+
+                    <td><a class="btn btn-outline-success" href="<?= base_url('formulario/buscar/' . $dato) ?>" role="button">Editar</a> </td>
                 </div>
 
                 <div class="table-responsive">

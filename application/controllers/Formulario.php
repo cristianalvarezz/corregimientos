@@ -10,7 +10,7 @@ class Formulario extends CI_Controller
 
 		$this->load->library(array('form_validation'));
 		$this->load->library('upload');
-		$this->load->helper(array('corregimientos/corregimientos_rules_helper.php', 'string'));
+		$this->load->helper(array('corregimientos/corregimientos_rules', 'string'));
 		$this->load->model('ModelsCorregimientos');
 	}
 	public function index()
@@ -20,6 +20,7 @@ class Formulario extends CI_Controller
 
 	public function store()
 	{
+
 		$nombrecorregimiento = $this->input->post('nombrecorregimiento');
 		$municipio = $this->input->post('municipio');
 		$veredas = $this->input->post('veredas');
@@ -34,35 +35,56 @@ class Formulario extends CI_Controller
 		$codigodane = $this->input->post('codigodane');
 		$numeroadministrativo = $this->input->post('numeroadministrativo');
 
-		// $this->form_validation->set_rules(obtenerReglasCorregimientos());
-		// if ($this->form_validation->run() == FALSE) {
-		// 	$this->load->view('formulario');
-		//     $this->output->set_status_header(400);
-		// }else{
-
-		// }
-		$corregimiento = array(
-			'nombrecorregimiento' => $nombrecorregimiento,
-			'municipio' => $municipio,
-			'veredas' => $veredas,
-			'pobladores' => $pobladores,
-			'ubicacionlatitud' => $ubicacionlatitud,
-			'area' => $area,
-			'longitud' => $longitud,
-			'nautoridadprincipal' => $nautoridadprincipal,
-			'nautoridadpolicial' => $nautoridadpolicial,
-			'miembrosjal' => $miembrosjal,
-			'jal' => $jal,
-			'codigodane' => $codigodane,
-			'numeroadministrativo' => $numeroadministrativo
-		);
-		if (!$this->ModelsCorregimientos->guardar($corregimiento)) {
-			$this->output->set_status_header(500);
+		$this->form_validation->set_rules(obtenerReglasCorregimientos());
+		if ($this->form_validation->run() == FALSE) {
+		//	var_dump('Algo esta mal');
+		    $this->getTemplate($this->load->view('accionesFormulario/formulario', '', TRUE));
+			$this->output->set_status_header(400);
 		} else {
-			$this->session->set_flashdata('msg', 'El corregimiento fue registrado exitosamente');
-			redirect('formulario');
+			$corregimiento = array(
+				'nombrecorregimiento' => $nombrecorregimiento,
+				'municipio' => $municipio,
+				'veredas' => $veredas,
+				'pobladores' => $pobladores,
+				'ubicacionlatitud' => $ubicacionlatitud,
+				'area' => $area,
+				'longitud' => $longitud,
+				'nautoridadprincipal' => $nautoridadprincipal,
+				'nautoridadpolicial' => $nautoridadpolicial,
+				'miembrosjal' => $miembrosjal,
+				'jal' => $jal,
+				'codigodane' => $codigodane,
+				'numeroadministrativo' => $numeroadministrativo
+			);
+			var_dump($corregimiento );
+			if (!$this->ModelsCorregimientos->guardar($corregimiento)) {
+				$this->output->set_status_header(500);
+			} else {
+				$this->session->set_flashdata('msg', 'El corregimiento fue registrado exitosamente');
+				redirect(base_url('formulario'));
+
+			}
 		}
+	
 	}
+
+	public function guardarimagen($longitud)
+	{
+		$longitud  = 'longitud';
+		$config['upload_path'] = '../../images/';
+		$config['file_name'] = "nombre_archivo";
+		$config['allowed_types'] = "jpg|png";
+		$config['max_size'] = "5000";
+		$config['max_width'] = "2000";
+		$config['max_height'] = "2000";
+		$this->load->library('upload', $config);
+		if (!$this->upload->do_upload($longitud)) {
+			echo $this->upload->display_errors();
+			return;
+		}
+		echo $data['uploadSuccess'] = $this->upload->data();
+	}
+
 	public function mostrarCorregimientos($page = 1)
 	{
 		$page--;
@@ -84,6 +106,7 @@ class Formulario extends CI_Controller
 		$view = $this->load->view('accionesFormulario/editarCorregimiento', array('corregimientos' => $corregimientos), true);
 		$this->getTemplate($view);
 	}
+
 	public function actualizar()
 	{
 
@@ -102,46 +125,45 @@ class Formulario extends CI_Controller
 		$codigodane = $this->input->post('codigodane');
 		$numeroadministrativo = $this->input->post('numeroadministrativo');
 
-		// $this->form_validation->set_rules(obtenerReglasCorregimientos());
-		// if ($this->form_validation->run() == FALSE) {
-		// 	$this->load->view('formulario');
-		//     $this->output->set_status_header(400);
-		// }else{
 
-		// }
-		$corregimiento = array(
-			'nombrecorregimiento' => $nombrecorregimiento,
-			'municipio' => $municipio,
-			'veredas' => $veredas,
-			'pobladores' => $pobladores,
-			'ubicacionlatitud' => $ubicacionlatitud,
-			'area' => $area,
-			'longitud' => $longitud,
-			'nautoridadprincipal' => $nautoridadprincipal,
-			'nautoridadpolicial' => $nautoridadpolicial,
-			'miembrosjal' => $miembrosjal,
-			'jal' => $jal,
-			'codigodane' => $codigodane,
-			'numeroadministrativo' => $numeroadministrativo
-		);
-
-
-		$this->ModelsCorregimientos->actualizar($id_corregimiento, $corregimiento);
-		$this->session->set_flashdata('msg', 'El  ' . $nombrecorregimiento . ' fue actualizado correctamente');
-		redirect('formulario');
+		$this->form_validation->set_rules(obtenerReglasCorregimientos());
+		if ($this->form_validation->run() == FALSE) {
+			$this->getTemplate($this->load->view('accionesFormulario/editarCorregimiento', '', TRUE));
+			$this->output->set_status_header(400);
+		} else {
+			$corregimiento = array(
+				'nombrecorregimiento' => $nombrecorregimiento,
+				'municipio' => $municipio,
+				'veredas' => $veredas,
+				'pobladores' => $pobladores,
+				'ubicacionlatitud' => $ubicacionlatitud,
+				'area' => $area,
+				'longitud' => $longitud,
+				'nautoridadprincipal' => $nautoridadprincipal,
+				'nautoridadpolicial' => $nautoridadpolicial,
+				'miembrosjal' => $miembrosjal,
+				'jal' => $jal,
+				'codigodane' => $codigodane,
+				'numeroadministrativo' => $numeroadministrativo
+			);
+			$this->ModelsCorregimientos->actualizar($id_corregimiento, $corregimiento);
+			$this->session->set_flashdata('msg', 'El  ' . $nombrecorregimiento . ' fue actualizado correctamente');
+			redirect(base_url('formulario/mostrarCorregimientos'));redirect('formulario');
+		}
 	}
-	public function eliminar(){
-        $id_corregimiento= $this->input->post('id_corregimiento',true);
-        if(empty( $id_corregimiento)){
-            $this->output
-                ->set_status_header(400)
-                ->set_output(json_encode(array('msg'=>'El id no puede ser vacio')));
-        }else{
-            $this->ModelsCorregimientos->borrarCorregimiento( $id_corregimiento);
-            $this->output
-                ->set_status_header(200);
-        }
-    }
+	public function eliminar()
+	{
+		$id_corregimiento = $this->input->post('id_corregimiento', true);
+		if (empty($id_corregimiento)) {
+			$this->output
+				->set_status_header(400)
+				->set_output(json_encode(array('msg' => 'El id no puede ser vacio')));
+		} else {
+			$this->ModelsCorregimientos->borrarCorregimiento($id_corregimiento);
+			$this->output
+				->set_status_header(200);
+		}
+	}
 	public function buscarDato()
 	{
 		$dato = $this->input->post('dato');
