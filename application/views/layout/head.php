@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
- 
+  
+    <link rel="stylesheet" href="<?=base_url('assets/libs/sweetalert2/dist/sweetalert2.min.css')?>">
+    <link rel="stylesheet" href="<?=base_url('assets/css/style.css')?>">
     <title>Formulario de corregimientos</title>
 </head>

@@ -1,11 +1,9 @@
 <body>
     <!-- BARRA DE NAVEGACION -->
     <div style="height: 30px;"></div>
-    <div class="container">
+    <div class="container-sm" id="datos">
         <div class="row">
-            <div class="card shadow-bg p-12 mb-12 bg-b">
-          
-                <div class="input-group" style="margin-bottom: -13px;">           
+                <div class="input-group" >           
                         <div class="input-group-prepend">
                             <div class="input-group-text"><i class="bi bi-search"></i></div>
                         </div>
@@ -29,7 +27,7 @@
                         <button class="btn btn-light" href="<?=base_url('formulario/editar')?>" role="button">Buscar</button>
                 </div>
               
-                <div class="table-responsive">
+                <div class="table-response">
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -47,7 +45,8 @@
                                 <th scope="col">JAL </th>
                                 <th scope="col">Código Dane</th>
                                 <th scope="col">Número acto administrativo</th>
-                                <th scope="col">Acciones</th>
+                                <th scope="col">Editar</th>
+                                <th scope="col">Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -68,16 +67,16 @@
                                 <td><?= $item->jal ?></td>
                                 <td><?= $item->codigodane ?></td>
                                 <td><?= $item->numeroadministrativo ?></td>
-                                <td><a class="btn btn-warning" href="<?=base_url('formulario/editar/'.$item->id_corregimiento)?>" role="button">Editar</a></td>
+                                <td><a class="btn btn-outline-success" href="<?=base_url('formulario/editar/'.$item->id_corregimiento)?>" role="button">Editar</a> </td>    
+                                <td><a class="btn btn-outline-danger" href="#" data-id="<?=$item->id_corregimiento?>" id="delete" role="button">Eliminar</a></td>                 
 
                             </tr>
                         <?php endforeach; ?>
                         </tr>
                         </tbody>
                     </table>
-
                 </div>
-            </div>
+     
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <?php
