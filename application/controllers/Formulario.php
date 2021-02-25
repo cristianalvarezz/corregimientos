@@ -17,8 +17,22 @@ class Formulario extends CI_Controller
 	{
 		$this->getTemplate($this->load->view('accionesFormulario/formulario','',TRUE));
 	}
-	public function mostrarCorregimientos(){
-		$data = $this->ModelsCorregimientos->obtenerCorregimientos();
+	public function mostrarCorregimientos($page=1){
+		$page--;
+
+		if($page<0){
+			$page=0;
+		}
+		$page_size=10;
+		$offset=$page * $page_size;	
+
+		$data['corregimientos'] = $this->ModelsCorregimientos->paginar($page_size,$offset);
+		$data["current"]=$page+1;
+		$data["last_pag"]=ceil($this->ModelsCorregimientos->contarDatos()/$page_size);
+		$this->ModelsCorregimientos->obtenerCorregimientos();
+		
+	
+		
 		$this->getTemplate($this->load->view('accionesFormulario/mostrarCorregimientos',array('data'=>$data),TRUE));
 
 	}
