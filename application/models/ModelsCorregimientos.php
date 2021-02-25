@@ -18,6 +18,19 @@ class ModelsCorregimientos extends CI_Model
         $sql = $this->db->order_by('id_corregimiento', 'ASC')->get('informacion');
         return $sql->result();
     }
+    public function getCorregimientos($id_corregimiento)
+    {
+        $this->db->select('*');
+        $this->db->from('informacion');
+        $this->db->where('id_corregimiento', $id_corregimiento);
+        $query1 = $this->db->get();
+        $query1->result();
+        return   $query1->row_array();
+    }
+    public function actualizar($_idcorregimiento, $data){
+        $this->db->where('id_corregimiento', $_idcorregimiento);
+        $this->db->update('informacion', $data);
+    }
     public function contarRegistros(){
         $this->db->select();
         $this->db->from($this->informacion);

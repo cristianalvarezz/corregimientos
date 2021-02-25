@@ -4,15 +4,31 @@
     <div class="container">
         <div class="row">
             <div class="card shadow-bg p-12 mb-12 bg-b">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Buscar">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Buscar por</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
+          
+                <div class="input-group" style="margin-bottom: -13px;">           
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="bi bi-search"></i></div>
+                        </div>
+                        <input type="text" class="form-control " id="inlineFormInputGroup">
+                        <select class="form-control col-md-4 " aria-label="Default select example" name="dato">
+                            <option selected>Buscar por</option>
+                            <option value="nombrecorregimiento">Nombre del Corregimiento</option>
+                            <option value="municipio">Municipio</option>
+                            <option value="veredas">Veredas que lo componen</option>
+                            <option value="pobladores">Número de pobladores aproximado</option>
+                            <option value="ubicacionlatitud">Ubicación aproximada latitud</option>
+                            <option value="area">Area</option>
+                            <option value="longitud">Longitud</option>
+                            <option value="nautoridadprincipal">Nombre autoridad principal</option>
+                            <option value="nautoridadpolicial">Nombre autoridad de policía</option>
+                            <option value="miembrosjal">miembros JAL</option>
+                            <option value="jal">JAL </option>
+                            <option value="codigodane">Código Dane</option>
+                            <option value="numeroadministrativo">Número acto administrativo</option>
+                        </select>
+                        <button class="btn btn-light" href="<?=base_url('formulario/editar')?>" role="button">Buscar</button>
                 </div>
+              
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
@@ -31,6 +47,7 @@
                                 <th scope="col">JAL </th>
                                 <th scope="col">Código Dane</th>
                                 <th scope="col">Número acto administrativo</th>
+                                <th scope="col">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -51,6 +68,7 @@
                                 <td><?= $item->jal ?></td>
                                 <td><?= $item->codigodane ?></td>
                                 <td><?= $item->numeroadministrativo ?></td>
+                                <td><a class="btn btn-warning" href="<?=base_url('formulario/editar/'.$item->id_corregimiento)?>" role="button">Editar</a></td>
 
                             </tr>
                         <?php endforeach; ?>
