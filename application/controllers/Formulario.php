@@ -84,26 +84,22 @@ class Formulario extends CI_Controller
 		}
 		echo $data['uploadSuccess'] = $this->upload->data();
 	}
-
+	public function  buscarlistado($page = 1){
+		redirect("/formulario/mostrarCorregimientos/?busqueda=".$this->input->get('busqueda')."&corregimiento=".$this->input->get('corregimiento'));
+	}
 	public function mostrarCorregimientos($page = 1)
 	{
-		$corregimiento = $this->input->post('corregimiento');
-		$busqueda = $this->input->post('busqueda');
-
-	
 		$page--;
-
+		$busqueda= $this->input->get('busqueda');
 		if ($page < 0) {
 			$page = 0;
 		}
-		$page_size = 5;
+		$page_size = 20;
 		$offset = $page * $page_size;
-		if($busqueda!==""){
-			$offset=0;
-			$page=0;
-		}
+	
 		$data['corregimientos'] = $this->ModelsCorregimientos->paginar($page_size, $offset,$busqueda);
 		$data["current"] = $page + 1;
+		$data["busqueda"] = $busqueda;
 		$data["last_pag"] = ceil($this->ModelsCorregimientos->contarRegistros($busqueda) / $page_size);
 		$this->ModelsCorregimientos->obtenerCorregimientos();
 		$this->getTemplate($this->load->view('accionesFormulario/mostrarCorregimientos', array('data' => $data), TRUE));

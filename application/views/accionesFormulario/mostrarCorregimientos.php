@@ -1,16 +1,18 @@
 <body>
+<?php 
 
+?>
     <!-- BARRA DE NAVEGACION -->
     <div style="height: 30px;"></div>
     <div class="container-fluid">
         <div class="row">
             <div class="card shadow-lg p-3 mb-5 bg-white" id="datos">
-            <form id="corregimientos" method="post" action="<?= base_url('formulario/mostrarCorregimientos') ?>">
+            <form id="corregimientos" method="get" action="<?= base_url('formulario/buscarlistado') ?>">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text"><i class="bi bi-search"></i></div>
                     </div>
-                    <input type="text" class="form-control " id="inlineFormInputGroup" name="busqueda">
+                    <input type="text" class="form-control " id="inlineFormInputGroup" name="busqueda" value="<?php echo $data["busqueda"] ?>">
                     <select name="corregimiento" class="custom-select">
                         <option value="nombrecorregimiento" >Nombre del Corregimiento</option>
                         <option value="municipio">Municipio</option>
@@ -29,9 +31,6 @@
                     <button class="btn btn-primary" type="submit">Enviar</button>
                 </div>
             </form>
-
-
-
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
@@ -64,7 +63,7 @@
                                 <td><?= $item->veredas ?></td>
                                 <td><?= $item->pobladores ?></td>
                                 <td><?= $item->ubicacionlatitud ?></td>
-                                <td><?= $item->area ?></td>
+                                <td><?= $item->area ?>KM</td>
                                 <td><?= $item->longitud ?></td>
                                 <td><?= $item->nautoridadprincipal ?></td>
                                 <td><?= $item->nautoridadpolicial ?></td>
@@ -94,11 +93,11 @@
                             $next = $data["last_pag"];
                         }
                         ?>
-                        <li class="page-item"><a class="page-link" href="<?php echo base_url('formulario/mostrarCorregimientos/') .  $prev; ?>">Anterior</a></li>
+                        <li class="page-item"><a class="page-link" href="<?php echo base_url('formulario/mostrarCorregimientos/') .  $prev; ?>?busqueda=<?php echo $data["busqueda"] ?>">Anterior</a></li>
                         <?php for ($i = 1; $i <= $data["last_pag"]; $i++) { ?>
-                            <li class="page-item"><a class="page-link" href="<?php echo base_url('formulario/mostrarCorregimientos/') . $i; ?>"><?php echo $i; ?></a></li>
+                            <li class="page-item"><a class="page-link" href="<?php echo base_url('formulario/mostrarCorregimientos/') . $i; ?>?busqueda=<?php echo $data["busqueda"] ?>"><?php echo $i; ?></a></li>
                         <?php } ?>
-                        <li class="page-item"><a class="page-link" href="<?php echo base_url('formulario/mostrarCorregimientos/') . $next; ?>">Siguiente</a></li>
+                        <li class="page-item"><a class="page-link" href="<?php echo base_url('formulario/mostrarCorregimientos/') . $next; ?>?busqueda=<?php echo $data["busqueda"] ?>">Siguiente</a></li>
                     </ul>
                 </nav>
             </div>
