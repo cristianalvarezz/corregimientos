@@ -14,33 +14,49 @@ class ModelsCorregimientos extends CI_Model
         $this->db->trans_complete();
         return !$this->db->trans_status() ? false : true;
     }
-    public function obtenerCorregimientos(){
+    public function obtenerCorregimientos()
+    {
         $sql = $this->db->order_by('id_corregimiento', 'ASC')->get('informacion');
         return $sql->result();
     }
 
-    public function actualizar($_idcorregimiento, $data){
+    public function actualizar($_idcorregimiento, $data)
+    {
         $this->db->where('id_corregimiento', $_idcorregimiento);
         $this->db->update('informacion', $data);
     }
-    public function borrarCorregimiento($id_corregimiento){
-        $this->db->where('id_corregimiento',$id_corregimiento);
+    public function borrarCorregimiento($id_corregimiento)
+    {
+        $this->db->where('id_corregimiento', $id_corregimiento);
         $this->db->delete('informacion');
     }
     // metodos para la paginacion
-    public function paginar($page_size,$offset){
-        $sql = $this->db->limit($page_size,$offset)->get('informacion');
+    public function paginar($page_size, $offset, $busqueda)
+    {
+        $this->db->select();
+        $this->db->from('informacion');
+        $this->db->limit($page_size, $offset);
+        if ($busqueda != "") {
+            $this->db->like("nombrecorregimiento",$busqueda);
+        }
+        $sql = $this->db->get();
         return $sql->result();
     }
-    public function contarDatos(){
+
+    public function contarDatos()
+    {
         $sql = $this->db->order_by('id_corregimiento', 'ASC')->get('informacion');
         return $sql->num_rows();
     }
-    public function contarRegistros(){
+    public function contarRegistros($busqueda)
+    {
         $this->db->select();
-        $this->db->from($this->informacion);
-        $sql=$this->db->get();
-        return $sql->result();
+        $this->db->from('informacion');
+        if ($busqueda != "") {
+            $this->db->like("nombrecorregimiento",$busqueda);
+        }
+        $sql = $this->db->get();
+        return $sql->num_rows();
     }
     public function getCorregimientos($id_corregimiento)
     {

@@ -87,16 +87,24 @@ class Formulario extends CI_Controller
 
 	public function mostrarCorregimientos($page = 1)
 	{
+		$corregimiento = $this->input->post('corregimiento');
+		$busqueda = $this->input->post('busqueda');
+
+	
 		$page--;
 
 		if ($page < 0) {
 			$page = 0;
 		}
-		$page_size = 10;
+		$page_size = 5;
 		$offset = $page * $page_size;
-		$data['corregimientos'] = $this->ModelsCorregimientos->paginar($page_size, $offset);
+		if($busqueda!==""){
+			$offset=0;
+			$page=0;
+		}
+		$data['corregimientos'] = $this->ModelsCorregimientos->paginar($page_size, $offset,$busqueda);
 		$data["current"] = $page + 1;
-		$data["last_pag"] = ceil($this->ModelsCorregimientos->contarDatos() / $page_size);
+		$data["last_pag"] = ceil($this->ModelsCorregimientos->contarRegistros($busqueda) / $page_size);
 		$this->ModelsCorregimientos->obtenerCorregimientos();
 		$this->getTemplate($this->load->view('accionesFormulario/mostrarCorregimientos', array('data' => $data), TRUE));
 	}
@@ -164,11 +172,7 @@ class Formulario extends CI_Controller
 				->set_status_header(200);
 		}
 	}
-	public function buscarDato()
-	{
-		$dato = $this->input->post('dato');
-		echo $dato;
-	}
+
 	public function getTemplate($view)
 	{
 		$data = array(

@@ -5,13 +5,14 @@
     <div class="container-fluid">
         <div class="row">
             <div class="card shadow-lg p-3 mb-5 bg-white" id="datos">
+            <form id="corregimientos" method="post" action="<?= base_url('formulario/mostrarCorregimientos') ?>">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text"><i class="bi bi-search"></i></div>
                     </div>
-                    <input type="text" class="form-control " id="inlineFormInputGroup" >
+                    <input type="text" class="form-control " id="inlineFormInputGroup" name="busqueda">
                     <select name="corregimiento" class="custom-select">
-                        <option value="nombrecorregimiento" <?= $dato = "nombrecorregimiento"; ?>>Nombre del Corregimiento</option>
+                        <option value="nombrecorregimiento" >Nombre del Corregimiento</option>
                         <option value="municipio">Municipio</option>
                         <option value="veredas">Veredas que lo componen</option>
                         <option value="pobladores">Número de pobladores aproximado</option>
@@ -25,9 +26,11 @@
                         <option value="codigodane">Código Dane</option>
                         <option value="numeroadministrativo">Número acto administrativo</option>
                     </select>
-
-                    <td><a class="btn btn-outline-success" href="<?= base_url('formulario/buscar/' . $dato) ?>" role="button">Editar</a> </td>
+                    <button class="btn btn-primary" type="submit">Enviar</button>
                 </div>
+            </form>
+
+
 
                 <div class="table-responsive">
                     <table class="table table-striped">
