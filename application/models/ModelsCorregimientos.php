@@ -31,14 +31,56 @@ class ModelsCorregimientos extends CI_Model
         $this->db->delete('informacion');
     }
     // metodos para la paginacion
-    public function paginar($page_size, $offset, $busqueda)
+    public function paginar($page_size, $offset, $busqueda, $campo)
     {
+
         $this->db->select();
         $this->db->from('informacion');
         $this->db->limit($page_size, $offset);
-        if ($busqueda != "") {
-            $this->db->like("nombrecorregimiento",$busqueda);
+        if ($busqueda != "" && $campo != "") {
+            $this->db->group_start();
+            if ($campo == "id_corregimiento") {
+                $this->db->where("id_corregimiento", $busqueda);
+            }
+            if ($campo == "nombrecorregimiento") {
+                $this->db->like('nombrecorregimiento',  $busqueda);
+            }
+            if ($campo == "municipio") {
+                $this->db->like("municipio", $busqueda);
+            }
+            if ($campo == "veredas") {
+                $this->db->like("veredas", $busqueda);
+            }
+            if ($campo == "pobladores") {
+                $this->db->like("pobladores", $busqueda);
+            }
+            if ($campo == "ubicacionlatitud") {
+                $this->db->like("ubicacionlatitud", $busqueda);
+            }
+            if($campo =="area"){
+                $this->db->like("area", $busqueda);
+            }
+            if($campo =="nautoridadprincipal"){
+                $this->db->like("nautoridadprincipal", $busqueda);
+            }
+            if($campo =="nautoridadpolicial"){
+                $this->db->like("nautoridadpolicial", $busqueda);
+            }
+            if($campo =="miembrosjal"){
+                $this->db->like("miembrosjal", $busqueda);
+            }
+            if ($campo == "jal") {
+                $this->db->like("jal", $busqueda);
+            }
+            if ($campo == "codigodane") {
+                $this->db->like("codigodane", $busqueda);
+            }
+            if ($campo == "numeroadministrativo") {
+                $this->db->like("numeroadministrativo", $busqueda);
+            }
+            $this->db->group_end();
         }
+
         $sql = $this->db->get();
         return $sql->result();
     }
@@ -53,7 +95,7 @@ class ModelsCorregimientos extends CI_Model
         $this->db->select();
         $this->db->from('informacion');
         if ($busqueda != "") {
-            $this->db->like("nombrecorregimiento",$busqueda);
+            $this->db->like("nombrecorregimiento", $busqueda);
         }
         $sql = $this->db->get();
         return $sql->num_rows();

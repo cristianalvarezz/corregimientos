@@ -136,7 +136,7 @@
             array(
                 'field' => 'numeroadministrativo',
                 'label' => 'Número acto administrativo que lo creo',
-                'rules' => 'required|min_length[1]|max_length[5]|is_natural|greater_than[0]|less_than[1000000]',
+                'rules' => 'required|min_length[1]|max_length[30]|is_natural|greater_than[0]|less_than[1000000]',
                 'errors' => array(
                     'required' => 'El %s es requerido.',
                     'min_length' => 'El %s contiene muy pocos caracteres',

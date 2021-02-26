@@ -1,36 +1,44 @@
 <body>
-<?php 
 
-?>
     <!-- BARRA DE NAVEGACION -->
     <div style="height: 30px;"></div>
     <div class="container-fluid">
+        <div style="height: 30px;"></div>
+        <?php if ($dat = $this->session->flashdata('msg')) : ?>
+            <div class="alert alert-primary" role="alert">
+                <?= $dat ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label=" <?= $this->session->sess_destroy(); ?>">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php endif; ?>
         <div class="row">
             <div class="card shadow-lg p-3 mb-5 bg-white" id="datos">
-            <form id="corregimientos" method="get" action="<?= base_url('formulario/buscarlistado') ?>">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text"><i class="bi bi-search"></i></div>
+                <form id="corregimientos" method="get" action="<?= base_url('formulario/buscarlistado') ?>">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="bi bi-search"></i></div>
+                        </div>
+                        <input type="text" class="form-control " id="inlineFormInputGroup" name="busqueda" value="<?php echo $data["busqueda"] ?>" data-toggle="tooltip" title="En caso de no seleccionar ningún campo, se seleccionará el nombre de corregimientos por defecto.">
+                        <select name="campo" class="custom-select">
+                            <option value="nombrecorregimiento">Selecciona campo de busqueda</option>
+                            <option value="id_corregimiento">Identificador del registro</option>
+                            <option value="nombrecorregimiento">Nombre del Corregimiento</option>
+                            <option value="municipio">Municipio</option>
+                            <option value="veredas">Veredas que lo componen</option>
+                            <option value="pobladores">Número de pobladores aproximado</option>
+                            <option value="ubicacionlatitud">Ubicación aproximada latitud</option>
+                            <option value="area">Area</option>
+                            <option value="nautoridadprincipal">Nombre autoridad principal</option>
+                            <option value="nautoridadpolicial">Nombre autoridad de policía</option>
+                            <option value="miembrosjal">miembros JAL</option>
+                            <option value="jal">JAL </option>
+                            <option value="codigodane">Código Dane</option>
+                            <option value="numeroadministrativo">Número acto administrativo</option>
+                        </select>
+                        <button class="btn btn-primary" type="submit">Enviar</button>
                     </div>
-                    <input type="text" class="form-control " id="inlineFormInputGroup" name="busqueda" value="<?php echo $data["busqueda"] ?>">
-                    <select name="corregimiento" class="custom-select">
-                        <option value="nombrecorregimiento" >Nombre del Corregimiento</option>
-                        <option value="municipio">Municipio</option>
-                        <option value="veredas">Veredas que lo componen</option>
-                        <option value="pobladores">Número de pobladores aproximado</option>
-                        <option value="ubicacionlatitud">Ubicación aproximada latitud</option>
-                        <option value="area">Area</option>
-                        <option value="longitud">Longitud</option>
-                        <option value="nautoridadprincipal">Nombre autoridad principal</option>
-                        <option value="nautoridadpolicial">Nombre autoridad de policía</option>
-                        <option value="miembrosjal">miembros JAL</option>
-                        <option value="jal">JAL </option>
-                        <option value="codigodane">Código Dane</option>
-                        <option value="numeroadministrativo">Número acto administrativo</option>
-                    </select>
-                    <button class="btn btn-primary" type="submit">Enviar</button>
-                </div>
-            </form>
+                </form>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
@@ -42,7 +50,6 @@
                                 <th scope="col">Número de pobladores aproximado</th>
                                 <th scope="col">Ubicación aproximada latitud</th>
                                 <th scope="col">Area</th>
-                                <th scope="col">Longitud</th>
                                 <th scope="col">Nombre autoridad principal</th>
                                 <th scope="col">Nombre autoridad de policía </th>
                                 <th scope="col">Miembros JAL</th>
@@ -63,7 +70,7 @@
                                 <td><?= $item->veredas ?></td>
                                 <td><?= $item->pobladores ?></td>
                                 <td><?= $item->ubicacionlatitud ?></td>
-                                <td><?= $item->area ?>KM</td>
+                                <td><?= $item->area ?></td>
                                 <td><?= $item->longitud ?></td>
                                 <td><?= $item->nautoridadprincipal ?></td>
                                 <td><?= $item->nautoridadpolicial ?></td>

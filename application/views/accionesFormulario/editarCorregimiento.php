@@ -1,10 +1,11 @@
 <body>
+
     <!-- BARRA DE NAVEGACION -->
     <div style="height: 30px;"></div>
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="card shadow-lg p-3 mb-5 bg-white ">
+                <div class="card shadow-lg p-3 mb-5 bg-white ">      
                     <div class="card-header">Corregimientos</div>
                     <div class="card-body">
                         <form id="corregimientos" method="post" action="<?= base_url('formulario/actualizar') ?>" enctype="multipart/form-data">
@@ -91,15 +92,6 @@
                             </div>
                             <button class="btn btn-primary" type="submit">Enviar</button>
                             <div style="height: 30px;"></div>
-                            </br>
-                            <?php if ($dat = $this->session->flashdata('msg')) : ?>
-                                <div class="alert alert-primary" role="alert">
-                                    <?= $dat ?>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label=" <?= $this->session->sess_destroy(); ?>">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            <?php endif; ?>
                         </form>
 
                     </div>

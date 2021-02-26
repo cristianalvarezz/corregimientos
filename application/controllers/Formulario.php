@@ -35,36 +35,51 @@ class Formulario extends CI_Controller
 		$codigodane = $this->input->post('codigodane');
 		$numeroadministrativo = $this->input->post('numeroadministrativo');
 
-		$this->form_validation->set_rules(obtenerReglasCorregimientos());
-		if ($this->form_validation->run() == FALSE) {
-		//	var_dump('Algo esta mal');
-		    $this->getTemplate($this->load->view('accionesFormulario/formulario', '', TRUE));
-			$this->output->set_status_header(400);
-		} else {
-			$corregimiento = array(
-				'nombrecorregimiento' => $nombrecorregimiento,
-				'municipio' => $municipio,
-				'veredas' => $veredas,
-				'pobladores' => $pobladores,
-				'ubicacionlatitud' => $ubicacionlatitud,
-				'area' => $area,
-				'longitud' => $longitud,
-				'nautoridadprincipal' => $nautoridadprincipal,
-				'nautoridadpolicial' => $nautoridadpolicial,
-				'miembrosjal' => $miembrosjal,
-				'jal' => $jal,
-				'codigodane' => $codigodane,
-				'numeroadministrativo' => $numeroadministrativo
-			);
-			var_dump($corregimiento );
-			if (!$this->ModelsCorregimientos->guardar($corregimiento)) {
-				$this->output->set_status_header(500);
-			} else {
-				$this->session->set_flashdata('msg', 'El corregimiento fue registrado exitosamente');
-				redirect(base_url('formulario'));
+		var_dump($longitud);
 
-			}
+		$longitud  = 'longitud';
+		$config['upload_path'] = 'upload/';
+		$config['file_name'] = "nombre_archivo";
+		$config['allowed_types'] = "jpg|png";
+		$config['max_size'] = "5000";
+		$config['max_width'] = "2000";
+		$config['max_height'] = "2000";
+		$this->load->library('upload', $config);
+		if (!$this->upload->do_upload($longitud)) {
+			echo $this->upload->display_errors();
+			return;
 		}
+		echo $data['uploadSuccess'] = $this->upload->data();
+		// $this->form_validation->set_rules(obtenerReglasCorregimientos());
+		// if ($this->form_validation->run() == FALSE) {
+		// ;
+		//     $this->getTemplate($this->load->view('accionesFormulario/formulario', '', TRUE));
+		// 	$this->output->set_status_header(400);
+		// } else {
+		// 	$corregimiento = array(
+		// 		'nombrecorregimiento' => $nombrecorregimiento,
+		// 		'municipio' => $municipio,
+		// 		'veredas' => $veredas,
+		// 		'pobladores' => $pobladores,
+		// 		'ubicacionlatitud' => $ubicacionlatitud,
+		// 		'area' => $area,
+		// 		'longitud' => $longitud,
+		// 		'nautoridadprincipal' => $nautoridadprincipal,
+		// 		'nautoridadpolicial' => $nautoridadpolicial,
+		// 		'miembrosjal' => $miembrosjal,
+		// 		'jal' => $jal,
+		// 		'codigodane' => $codigodane,
+		// 		'numeroadministrativo' => $numeroadministrativo
+		// 	);
+		// 	if (!$this->ModelsCorregimientos->guardar($corregimiento)) {
+			  
+		// 		$this->output->set_status_header(500);
+		// 	} else {
+		// 		$this->session->set_flashdata('msg', 'El corregimiento ' .$nombrecorregimiento .' fue registrado exitosamente');
+		// 		redirect(base_url('formulario/mostrarCorregimientos'));
+
+		// 	}
+		// }
 	
 	}
 
@@ -85,21 +100,24 @@ class Formulario extends CI_Controller
 		echo $data['uploadSuccess'] = $this->upload->data();
 	}
 	public function  buscarlistado($page = 1){
-		redirect("/formulario/mostrarCorregimientos/?busqueda=".$this->input->get('busqueda')."&corregimiento=".$this->input->get('corregimiento'));
+		redirect("/formulario/mostrarCorregimientos/1?busqueda=".$this->input->get('busqueda')."&campo=".$this->input->get('campo'));
 	}
 	public function mostrarCorregimientos($page = 1)
 	{
 		$page--;
 		$busqueda= $this->input->get('busqueda');
+		$campo=$this->input->get('campo');
+
 		if ($page < 0) {
 			$page = 0;
 		}
 		$page_size = 20;
 		$offset = $page * $page_size;
 	
-		$data['corregimientos'] = $this->ModelsCorregimientos->paginar($page_size, $offset,$busqueda);
+		$data['corregimientos'] = $this->ModelsCorregimientos->paginar($page_size, $offset,$busqueda,$campo);
 		$data["current"] = $page + 1;
 		$data["busqueda"] = $busqueda;
+		$data["campo"]=$campo;
 		$data["last_pag"] = ceil($this->ModelsCorregimientos->contarRegistros($busqueda) / $page_size);
 		$this->ModelsCorregimientos->obtenerCorregimientos();
 		$this->getTemplate($this->load->view('accionesFormulario/mostrarCorregimientos', array('data' => $data), TRUE));
@@ -151,8 +169,8 @@ class Formulario extends CI_Controller
 				'numeroadministrativo' => $numeroadministrativo
 			);
 			$this->ModelsCorregimientos->actualizar($id_corregimiento, $corregimiento);
-			$this->session->set_flashdata('msg', 'El  ' . $nombrecorregimiento . ' fue actualizado correctamente');
-			redirect(base_url('formulario/mostrarCorregimientos'));redirect('formulario');
+			$this->session->set_flashdata('msg', 'El registro identificado con el id :' . $id_corregimiento . ' fue actualizado correctamente');
+			redirect(base_url('formulario/mostrarCorregimientos'));
 		}
 	}
 	public function eliminar()
