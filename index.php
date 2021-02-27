@@ -89,6 +89,8 @@ switch (ENVIRONMENT)
 		exit(1); // EXIT_ERROR
 }
 
+
+date_default_timezone_set("America/Bogota");
 /*
  *---------------------------------------------------------------
  * SYSTEM DIRECTORY NAME

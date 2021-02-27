@@ -1,5 +1,4 @@
 <?php
-
     function obtenerReglasCorregimientos(){
         return array(
             array(
@@ -76,7 +75,18 @@
               
                 )
             ),
-      
+            // array(
+            //     'field' => 'longitudnombre',
+            //     'label' => 'Nombre longitud ',
+            //     'rules' => 'required|min_length[3]|max_length[250]|alpha_numeric_spaces',
+            //     'errors' => array(
+            //         'required' => 'El %s es requerido.',
+            //         'min_length' => 'El %s contiene muy pocos caracteres',
+            //         'max_length' => 'El %s contiene muchos caracteres',
+            //         'alpha_numeric_spaces' => 'El %s contiene caracteres no alfabeticos'
+            //     )
+            // ),
+           
             array(
                 'field' => 'nautoridadprincipal',
                 'label' => 'Nombre autoridad principal',

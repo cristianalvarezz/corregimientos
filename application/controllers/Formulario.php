@@ -9,7 +9,7 @@ class Formulario extends CI_Controller
 		parent::__construct();
 
 		$this->load->library(array('form_validation'));
-	
+
 		$this->load->helper(array('corregimientos/corregimientos_rules', 'string'));
 		$this->load->model('ModelsCorregimientos');
 		$this->load->helper('date');
@@ -21,14 +21,14 @@ class Formulario extends CI_Controller
 
 	public function store()
 	{
-		
 		$nombrecorregimiento = $this->input->post('nombrecorregimiento');
 		$municipio = $this->input->post('municipio');
 		$veredas = $this->input->post('veredas');
 		$pobladores = $this->input->post('pobladores');
 		$ubicacionlatitud = $this->input->post('ubicacionlatitud');
 		$area = $this->input->post('area');
-		$longitud = $_FILES["longitud"]["name"];
+		$longitudnombre=$this->input->post('longitudnombre');
+		$longitud =  $_FILES["longitud"]["name"];
 		$nautoridadprincipal = $this->input->post('nautoridadprincipal');
 		$nautoridadpolicial = $this->input->post('nautoridadpolicial');
 		$miembrosjal = $this->input->post('miembrosjal');
@@ -37,7 +37,7 @@ class Formulario extends CI_Controller
 		$numeroadministrativo = $this->input->post('numeroadministrativo');
 
 		
-		$this->guardarimagen($longitud);
+	
 	
 		$this->form_validation->set_rules(obtenerReglasCorregimientos());
 		if ($this->form_validation->run() == FALSE) {
@@ -52,14 +52,15 @@ class Formulario extends CI_Controller
 				'pobladores' => $pobladores,
 				'ubicacionlatitud' => $ubicacionlatitud,
 				'area' => $area,
-				'longitud' => $longitud,
+				'longitud' => $this->guardarimagen($longitud,$longitudnombre),
 				'nautoridadprincipal' => $nautoridadprincipal,
 				'nautoridadpolicial' => $nautoridadpolicial,
 				'miembrosjal' => $miembrosjal,
 				'jal' => $jal,
 				'codigodane' => $codigodane,
 				'numeroadministrativo' => $numeroadministrativo,
-				'estatus'=>1
+				'estatus' => 1,
+				'fechae'=>""
 			);
 			if (!$this->ModelsCorregimientos->guardar($corregimiento)) {
 				$this->output->set_status_header(500);
@@ -70,11 +71,14 @@ class Formulario extends CI_Controller
 		}
 	}
 
-	public function guardarimagen($longitud)
+	public function guardarimagen($longitud,$longitudnombre)
 	{
-		$longitud  = 'longitud';
+	
+		var_dump($longitud);
+		$formato= explode( '.', $longitud) ;
+		$longitud='longitud';
 		$config['upload_path'] = 'upload/';
-		$config['file_name'] = "nombre_archivo";
+		$config['file_name'] = $longitudnombre;
 		$config['allowed_types'] = "jpg|png";
 		$config['max_size'] = "5000";
 		$config['max_width'] = "2000";
@@ -83,11 +87,13 @@ class Formulario extends CI_Controller
 		if (!$this->upload->do_upload($longitud)) {
 			echo $this->upload->display_errors();
 			return;
-		}	
-		$this->load->library('upload',$config);
+		}
+		$this->load->library('upload', $config);
 		$this->upload->initialize($config);
+
+		return $config['upload_path'].$config['file_name'].".".$formato[1];
 	
-		echo $data['uploadSuccess'] = $this->upload->data();
+
 	}
 	public function  buscarlistado($page = 1)
 	{
@@ -95,7 +101,7 @@ class Formulario extends CI_Controller
 	}
 	public function mostrarCorregimientos($page = 1)
 	{
-
+	
 		$page--;
 		$num_registros = $this->input->get('num_registros');
 		$busqueda = $this->input->get('busqueda');
@@ -129,6 +135,9 @@ class Formulario extends CI_Controller
 
 	public function actualizar()
 	{
+		$datestring = '%Y-%m-%d  %H:%i:%s';
+		$time = time();
+	 
 		$id_corregimiento = $this->input->post('id_corregimiento');
 		$nombrecorregimiento = $this->input->post('nombrecorregimiento');
 		$municipio = $this->input->post('municipio');
@@ -143,9 +152,8 @@ class Formulario extends CI_Controller
 		$jal = $this->input->post('jal');
 		$codigodane = $this->input->post('codigodane');
 		$numeroadministrativo = $this->input->post('numeroadministrativo');
-	    $format = "%Y-%M-%d %H:%i";
-		mdate($format);
-		
+	
+
 
 		$this->form_validation->set_rules(obtenerReglasCorregimientos());
 		if ($this->form_validation->run() == FALSE) {
@@ -159,14 +167,13 @@ class Formulario extends CI_Controller
 				'pobladores' => $pobladores,
 				'ubicacionlatitud' => $ubicacionlatitud,
 				'area' => $area,
-	
 				'nautoridadprincipal' => $nautoridadprincipal,
 				'nautoridadpolicial' => $nautoridadpolicial,
 				'miembrosjal' => $miembrosjal,
 				'jal' => $jal,
 				'codigodane' => $codigodane,
 				'numeroadministrativo' => $numeroadministrativo,
-				'fechae'=> mdate($format)
+				'fechae' =>  mdate($datestring, $time)
 			);
 			$this->ModelsCorregimientos->actualizar($id_corregimiento, $corregimiento);
 			$this->session->set_flashdata('msg', 'El registro identificado con el id :' . $id_corregimiento . ' fue actualizado correctamente');
@@ -177,14 +184,13 @@ class Formulario extends CI_Controller
 	{
 		$id_corregimiento = $this->input->post('id_corregimiento', true);
 		$estatus = array(
-			'estatus'=>0 
+			'estatus' => 0
 		);
 		if (empty($id_corregimiento)) {
 			$this->output
 				->set_status_header(400)
 				->set_output(json_encode(array('msg' => 'El id no puede ser vacio')));
-		}
-		else {
+		} else {
 			$this->ModelsCorregimientos->borrarCorregimiento($id_corregimiento,	$estatus);
 			$this->output
 				->set_status_header(200);

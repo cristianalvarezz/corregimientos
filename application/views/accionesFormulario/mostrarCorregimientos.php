@@ -63,6 +63,8 @@
                                 <th scope="col">Fecha edición registro</th>
                                 <th scope="col">Editar</th>
                                 <th scope="col">Eliminar</th>
+                
+                             
 
                             </tr>
                         </thead>
@@ -78,7 +80,8 @@
                                 <td><?= $item->pobladores ?></td>
                                 <td><?= $item->ubicacionlatitud ?></td>
                                 <td><?= $item->area ?></td>
-                                <td><?= $item->longitud ?></td>
+                                <td><?= $item->longitud ?><img src="../<?php echo $item->longitud ?>" width="50" height="50" ></td>
+                         
                                 <td><?= $item->nautoridadprincipal ?></td>
                                 <td><?= $item->nautoridadpolicial ?></td>
                                 <td><?= $item->miembrosjal ?></td>
@@ -88,7 +91,7 @@
                                 <td><?= $item->estatus ?></td>
                                 <td><?= $item->fechac ?></td>
                                 <td><?= $item->fechae ?></td>
-
+                                
                                 <td><a class="btn btn-outline-success" href="<?= base_url('formulario/editar/' . $item->id_corregimiento) ?>" role="button">Editar</a> </td>
                                 <td><a class="btn btn-outline-danger" href="#" data-id="<?= $item->id_corregimiento ?>" id="delete" role="button">Eliminar</a></td>
                                 <?php }?>
@@ -96,7 +99,7 @@
                         <?php endforeach; ?>
                         </tr>
                         </tbody>
-
+                       
                     </table>
 
                     <div style="height: 10px;"></div>
