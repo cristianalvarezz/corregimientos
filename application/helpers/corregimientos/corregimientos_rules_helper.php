@@ -17,7 +17,7 @@
             array(
                 'field' => 'municipio',
                 'label' => 'Nombre del municipio',
-                'rules' => 'required|min_length[3]|max_length[50]|alpha_numeric_spaces',
+                'rules' => 'required|min_length[3]|max_length[250]|alpha_numeric_spaces',
                 'errors' => array(
                     'required' => 'El %s es requerido.',
                     'min_length' => 'El %s contiene muy pocos caracteres',
@@ -29,7 +29,7 @@
             array(
                 'field' => 'veredas',
                 'label' => 'Nombre de la vereda',
-                'rules' => 'required|min_length[3]|max_length[50]|alpha_numeric_spaces',
+                'rules' => 'required|min_length[3]|max_length[250]|alpha_numeric_spaces',
                 'errors' => array(
                     'required' => 'El %s es requerido.',
                     'min_length' => 'El %s contiene muy pocos caracteres',
@@ -41,7 +41,7 @@
             array(
                 'field' => 'pobladores',
                 'label' => 'Número de pobladores aproximado',
-                'rules' => 'required|min_length[1]|max_length[10]|is_natural|greater_than[0]|less_than[1000000]',
+                'rules' => 'required|min_length[1]|max_length[250]|is_natural|greater_than[0]|less_than[1000000]',
                 'errors' => array(
                     'required' => 'La %s es requerido.',
                     'min_length' => 'El %s contiene muy pocos caracteres',
@@ -66,7 +66,7 @@
             array(
                 'field' => 'area',
                 'label' => 'Area en km',
-                'rules' => 'required|min_length[1]|max_length[5]|greater_than[0]|less_than[1000000]',
+                'rules' => 'required|min_length[1]|max_length[250]|greater_than[0]|less_than[1000000]',
                 'errors' => array(
                     'required' => 'El %s es requerido.',
                     'min_length' => 'El %s contiene muy pocos caracteres',
@@ -80,7 +80,7 @@
             array(
                 'field' => 'nautoridadprincipal',
                 'label' => 'Nombre autoridad principal',
-                'rules' => 'required|min_length[3]|max_length[500]|alpha_numeric_spaces',
+                'rules' => 'required|min_length[3]|max_length[250]|alpha_numeric_spaces',
                 'errors' => array(
                     'required' => 'El %s es requerido.',
                     'min_length' => 'El %s contiene muy pocos caracteres',
@@ -91,7 +91,7 @@
             array(
                 'field' => 'nautoridadpolicial',
                 'label' => 'Nombre autoridad de policía ',
-                'rules' => 'required|min_length[3]|max_length[50]|alpha_numeric_spaces',
+                'rules' => 'required|min_length[3]|max_length[250]|alpha_numeric_spaces',
                 'errors' => array(
                     'required' => 'El %s es requerido.',
                     'min_length' => 'El %s contiene muy pocos caracteres',
@@ -102,7 +102,7 @@
             array(
                 'field' => 'miembrosjal',
                 'label' => 'Miembros de la JAL',
-                'rules' => 'required|min_length[3]|max_length[50]',
+                'rules' => 'required|min_length[3]|max_length[250]',
                 'errors' => array(
                     'required' => ' %s es requerido.',
                     'min_length' => ' %s contiene muy pocos caracteres',
@@ -112,7 +112,7 @@
             array(
                 'field' => 'jal',
                 'label' => 'JAL',
-                'rules' => 'required|min_length[3]|max_length[50]|alpha_numeric_spaces',
+                'rules' => 'required|min_length[3]|max_length[250]|alpha_numeric_spaces',
                 'errors' => array(
                     'required' => 'La %s es requerido.',
                     'min_length' => 'La %s contiene muy pocos caracteres',

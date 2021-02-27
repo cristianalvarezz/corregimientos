@@ -36,7 +36,8 @@
                             <option value="codigodane">Código Dane</option>
                             <option value="numeroadministrativo">Número acto administrativo</option>
                         </select>
-                        <button class="btn btn-primary" type="submit">Enviar</button>
+                        <!-- <input name="num_registros" type="number" class="form-control" min="1" pattern="^[5-9]+" class="h-50 d-inline-block" style="width : 1px; heigth : 1px" > -->
+                        <button class="btn btn-primary" type="submit">Buscar</button>
                     </div>
                 </form>
                 <div class="table-responsive">
@@ -50,20 +51,26 @@
                                 <th scope="col">Número de pobladores aproximado</th>
                                 <th scope="col">Ubicación aproximada latitud</th>
                                 <th scope="col">Area</th>
+                                <th scope="col">Longitud</th>
                                 <th scope="col">Nombre autoridad principal</th>
                                 <th scope="col">Nombre autoridad de policía </th>
                                 <th scope="col">Miembros JAL</th>
                                 <th scope="col">JAL </th>
                                 <th scope="col">Código Dane</th>
-                                <th scope="col">Número acto administrativo</th>
+                                <th scope="col">Numero administrativo</th>
+                                <th scope="col">estatus</th>
+                                <th scope="col">Fecha creación registro</th>
+                                <th scope="col">Fecha edición registro</th>
                                 <th scope="col">Editar</th>
                                 <th scope="col">Eliminar</th>
+
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <?php foreach ($data['corregimientos'] as $item) : ?>
                             <tr>
+                                <?php if($item->estatus==1){?>
                                 <td scope="row"><?= $item->id_corregimiento ?></td>
                                 <td><?= $item->nombrecorregimiento ?></td>
                                 <td><?= $item->municipio ?></td>
@@ -78,35 +85,44 @@
                                 <td><?= $item->jal ?></td>
                                 <td><?= $item->codigodane ?></td>
                                 <td><?= $item->numeroadministrativo ?></td>
+                                <td><?= $item->estatus ?></td>
+                                <td><?= $item->fechac ?></td>
+                                <td><?= $item->fechae ?></td>
+
                                 <td><a class="btn btn-outline-success" href="<?= base_url('formulario/editar/' . $item->id_corregimiento) ?>" role="button">Editar</a> </td>
                                 <td><a class="btn btn-outline-danger" href="#" data-id="<?= $item->id_corregimiento ?>" id="delete" role="button">Eliminar</a></td>
-
+                                <?php }?>
                             </tr>
                         <?php endforeach; ?>
                         </tr>
                         </tbody>
-                    </table>
-                </div>
 
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <?php
-                        $prev = $data["current"] - 1;
-                        $next = $data["current"] + 1;
-                        if ($prev <= 0) {
-                            $prev = 1;
-                        }
-                        if ($next > $data["last_pag"]) {
-                            $next = $data["last_pag"];
-                        }
-                        ?>
-                        <li class="page-item"><a class="page-link" href="<?php echo base_url('formulario/mostrarCorregimientos/') .  $prev; ?>?busqueda=<?php echo $data["busqueda"] ?>">Anterior</a></li>
-                        <?php for ($i = 1; $i <= $data["last_pag"]; $i++) { ?>
-                            <li class="page-item"><a class="page-link" href="<?php echo base_url('formulario/mostrarCorregimientos/') . $i; ?>?busqueda=<?php echo $data["busqueda"] ?>"><?php echo $i; ?></a></li>
-                        <?php } ?>
-                        <li class="page-item"><a class="page-link" href="<?php echo base_url('formulario/mostrarCorregimientos/') . $next; ?>?busqueda=<?php echo $data["busqueda"] ?>">Siguiente</a></li>
-                    </ul>
-                </nav>
+                    </table>
+
+                    <div style="height: 10px;"></div>
+                    <div class="container">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <?php
+                                $prev = $data["current"] - 1;
+                                $next = $data["current"] + 1;
+
+                                if ($prev <= 0) {
+                                    $prev = 1;
+                                }
+                                if ($next > $data["last_pag"]) {
+                                    $next = $data["last_pag"];
+                                }
+                                ?>
+                                <li class="page-item"><a class="page-link" href="<?php echo base_url('formulario/mostrarCorregimientos/') .  $prev; ?>?busqueda=<?php echo $data["busqueda"] ?>">Anterior</a></li>
+                                <?php for ($i = 1; $i <= $data["last_pag"]; $i++) { ?>
+                                    <li class="page-item"><a class="page-link" href="<?php echo base_url('formulario/mostrarCorregimientos/') . $i; ?>?busqueda=<?php echo $data["busqueda"] ?>"><?php echo $i; ?></a></li>
+                                <?php } ?>
+                                <li class="page-item"><a class="page-link" href="<?php echo base_url('formulario/mostrarCorregimientos/') . $next; ?>?busqueda=<?php echo $data["busqueda"] ?>">Siguiente</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

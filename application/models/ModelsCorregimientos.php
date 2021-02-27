@@ -19,16 +19,18 @@ class ModelsCorregimientos extends CI_Model
         $sql = $this->db->order_by('id_corregimiento', 'ASC')->get('informacion');
         return $sql->result();
     }
-
+   
     public function actualizar($_idcorregimiento, $data)
     {
         $this->db->where('id_corregimiento', $_idcorregimiento);
         $this->db->update('informacion', $data);
     }
-    public function borrarCorregimiento($id_corregimiento)
+    
+    public function borrarCorregimiento($id_corregimiento,$estatus)
     {
         $this->db->where('id_corregimiento', $id_corregimiento);
-        $this->db->delete('informacion');
+        $this->db->update('informacion', $estatus);
+
     }
     // metodos para la paginacion
     public function paginar($page_size, $offset, $busqueda, $campo)

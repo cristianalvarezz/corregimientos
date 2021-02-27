@@ -23,12 +23,12 @@
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
                                     <label for="veredas">Veredas que lo componen</label>
-                                    <textarea name="veredas" type="text" class="form-control" id="veredas" placeholder="Por favor separa los nombres de las veredas con comas." style="resize: none;" value="<?= set_value('veredas') ?>"></textarea>
+                                    <textarea name="veredas" type="text" class="form-control" id="veredas"  data-toggle="tooltip" title="Por favor separa los nombres de las veredas con comas."  style="resize: none;" value="<?= set_value('veredas') ?>"></textarea>
                                     <?= form_error('veredas', '<p class="text-danger">', '</p>') ?>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="pobladores">Número de pobladores aproximado</label>
-                                    <input name="pobladores" type="number" class="form-control" id="pobladores" value="<?= set_value('pobladores') ?>">
+                                    <input name="pobladores" type="number" class="form-control" id="pobladores" min="1" pattern="^[0-9]+" value="<?= set_value('pobladores') ?> ">
                                     <?= form_error('pobladores', '<p class="text-danger">', '</p>') ?>
                                 </div>
                             </div>
@@ -40,15 +40,14 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="area">Area en km</label>
-                                    <input name="area" type="number" class="form-control" id="area" value="<?= set_value('area') ?>">
+                                    <input name="area" type="number" class="form-control" id="area" min="1" pattern="^[0-9]+" value="<?= set_value('area') ?>">
                                     <?= form_error('area', '<p class="text-danger">', '</p>') ?>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-md-12 mb-3">
                                     <label for="longitud">Longitud (tomada con el celular)</label>
-                                    <input name="longitud" type="file" class="form-control" id="longitud">
-
+                                    <input name="longitud" type="file" class="form-control" id="longitud">                            
                                 </div>
                             </div>
                             <div class="form-row">
@@ -66,7 +65,7 @@
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
                                     <label for="miembrosjal"> miembros JAl</label>
-                                    <textarea name="miembrosjal" type="text" class="form-control" id="miembrosjal" placeholder="Por favor separa los nombres de los miembros con comas." style="resize: none;"  value="<?= set_value('miembrosjal') ?>"></textarea>
+                                    <textarea name="miembrosjal" type="text" class="form-control" id="miembrosjal"  data-toggle="tooltip" title="Por favor separa los nombres de los miembros con comas." style="resize: none;"  value="<?= set_value('miembrosjal') ?>"></textarea>
                                     <?= form_error('miembrosjal', '<p class="text-danger">', '</p>') ?>
                                 </div>
                                 <div class="col-md-6 mb-3">

@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="pobladores">Número de pobladores aproximado</label>
-                                    <input name="pobladores" type="number" class="form-control" id="pobladores" value="<?= set_value('pobladores', isset($corregimientos['pobladores']) ? $corregimientos['pobladores']  : '') ?>">
+                                    <input name="pobladores" type="number" class="form-control" id="pobladores"  min="1" pattern="^[0-9]+" value="<?= set_value('pobladores', isset($corregimientos['pobladores']) ? $corregimientos['pobladores']  : '') ?>">
                                     <?= form_error('pobladores', '<p class="text-danger">', '</p>') ?>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="area">Area en km</label>
-                                    <input name="area" type="number" class="form-control" id="longitud" value="<?= set_value('area', isset($corregimientos['area']) ? $corregimientos['area']  : '') ?>">
+                                    <input name="area" type="number" class="form-control" id="number" min="1" pattern="^[0-9]+" value="<?= set_value('area', isset($corregimientos['area']) ? $corregimientos['area']  : '') ?>">
                                     <?= form_error('area', '<p class="text-danger">', '</p>') ?>  
                                 </div>
                             </div>
