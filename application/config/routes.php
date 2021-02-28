@@ -52,3 +52,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'formulario';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['formulario/mostrarCorregimientos/store']='none';
+$route['formulario/mostrarCorregimientos/editar']='none';
+$route['formulario/mostrarCorregimientos/eliminar']='none';
+
+$route['formulario/mostrarCorregimientos/mostrarCorregimientos']='none';
+$route['formulario/mostrarCorregimientos/guardarimagen']='none';
+$route['formulario/mostrarCorregimientos/buscarlistado']='none';
+$route['formulario/mostrarCorregimientos/getTemplate']='none';
+
+
+$route['formulario/editar']='none';
+$route['formulario/eliminar']='none';
+$route['formulario/guardarimagen']='none';
+
+$route['formulario/getTemplate']='none';

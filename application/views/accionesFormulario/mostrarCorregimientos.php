@@ -58,13 +58,12 @@
                                 <th scope="col">JAL </th>
                                 <th scope="col">Código Dane</th>
                                 <th scope="col">Numero administrativo</th>
-                                <th scope="col">estatus</th>
                                 <th scope="col">Fecha creación registro</th>
                                 <th scope="col">Fecha edición registro</th>
                                 <th scope="col">Editar</th>
                                 <th scope="col">Eliminar</th>
-                
-                             
+
+
 
                             </tr>
                         </thead>
@@ -72,33 +71,34 @@
                             <tr>
                                 <?php foreach ($data['corregimientos'] as $item) : ?>
                             <tr>
-                                <?php if($item->estatus==1){?>
-                                <td scope="row"><?= $item->id_corregimiento ?></td>
-                                <td><?= $item->nombrecorregimiento ?></td>
-                                <td><?= $item->municipio ?></td>
-                                <td><?= $item->veredas ?></td>
-                                <td><?= $item->pobladores ?></td>
-                                <td><?= $item->ubicacionlatitud ?></td>
-                                <td><?= $item->area ?></td>
-                                <td><?= $item->longitud ?><img src="<?= base_url().$item->longitud ?>" width="100" height="100" ></td>
-                                <td><?= $item->nautoridadprincipal ?></td>
-                                <td><?= $item->nautoridadpolicial ?></td>
-                                <td><?= $item->miembrosjal ?></td>
-                                <td><?= $item->jal ?></td>
-                                <td><?= $item->codigodane ?></td>
-                                <td><?= $item->numeroadministrativo ?></td>
-                                <td><?= $item->estatus ?></td>
-                                <td><?= $item->fechac ?></td>
-                                <td><?= $item->fechae ?></td>
-                                
-                                <td><a class="btn btn-outline-success" href="<?= base_url('formulario/editar/' . $item->id_corregimiento) ?>" role="button">Editar</a> </td>
-                                <td><a class="btn btn-outline-danger" href="#" data-id="<?= $item->id_corregimiento ?>" id="delete" role="button">Eliminar</a></td>
-                                <?php }?>
+                                <?php if ($item->estatus == 1) { ?>
+                                    <td scope="row"><?= $item->id_corregimiento ?></td>
+                                    <td><?= $item->nombrecorregimiento ?></td>
+                                    <td><?= $item->municipio ?></td>
+                                    <td ><div class="text-justify"><?= $item->veredas ?></div></td>
+                                    <td><?= $item->pobladores ?></td>
+                                    <td><?= $item->ubicacionlatitud ?></td>
+                                    <td><?= $item->area ?></td>
+                                    <?php $formato = explode("/", $item->longitud) ?>
+                                    <td><?= $formato[1]  ?><img src="<?= base_url() . $item->longitud ?>" width="100" height="100"></td>
+                                    <td><?= $item->nautoridadprincipal ?></td>
+                                    <td><?= $item->nautoridadpolicial ?></td>
+                                    <td><?= $item->miembrosjal ?></td>
+                                    <td><?= $item->jal ?></td>
+                                    <td><?= $item->codigodane ?></td>
+                                    <td><?= $item->numeroadministrativo ?></td>
+
+                                    <td><?= $item->fechac ?></td>
+                                    <td><?= $item->fechae ?></td>
+
+                                    <td><a class="btn btn-outline-success" href="<?= base_url('formulario/editar/' . $item->id_corregimiento) ?>" role="button">Editar</a> </td>
+                                    <td><a class="btn btn-outline-danger" href="#" data-id="<?= $item->id_corregimiento ?>" id="delete" role="button">Eliminar</a></td>
+                                <?php } ?>
                             </tr>
                         <?php endforeach; ?>
                         </tr>
                         </tbody>
-                       
+
                     </table>
 
                     <div style="height: 10px;"></div>

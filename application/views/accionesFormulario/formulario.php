@@ -16,7 +16,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="municipio">Municipio al que pertenece</label>
-                                    <input name="municipio" type="text" class="form-control" id="municipio" maxlength="150"  value="<?= set_value('municipio') ?>"  data-toggle="tooltip" title="Por favor digita nombres que solo contengan caracteres alfabéticos y espacios.">
+                                    <input name="municipio" type="text" class="form-control" id="municipio" maxlength="150" value="<?= set_value('municipio') ?>"  data-toggle="tooltip" title="Por favor digita nombres que solo contengan caracteres alfabéticos y espacios.">
                                     <?= form_error('municipio', '<p class="text-danger">', '</p>') ?>
                                 </div>
                             </div>

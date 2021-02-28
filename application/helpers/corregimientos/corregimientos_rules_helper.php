@@ -29,7 +29,7 @@ if(!function_exists('obtenerReglasCorregimientos')){
             array(
                 'field' => 'veredas',
                 'label' => 'Nombre de la vereda',
-                'rules' => 'required|min_length[2]|max_length[250]|alpha_numeric_spaces',
+                'rules' => 'required|min_length[2]|max_length[500]|alpha_numeric_spaces',
                 'errors' => array(
                     'required' => 'El %s es requerido.',
                     'min_length' => 'El %s contiene muy pocos caracteres',
@@ -114,7 +114,7 @@ if(!function_exists('obtenerReglasCorregimientos')){
             array(
                 'field' => 'miembrosjal',
                 'label' => 'Miembros de la JAL',
-                'rules' => 'required|min_length[2]|max_length[250]',
+                'rules' => 'required|min_length[2]|max_length[500]',
                 'errors' => array(
                     'required' => ' %s es requerido.',
                     'min_length' => ' %s contiene muy pocos caracteres',
@@ -193,7 +193,7 @@ if(!function_exists('actualizarReglasCorregimientos')){
             array(
                 'field' => 'veredas',
                 'label' => 'Nombre de la vereda',
-                'rules' => 'required|min_length[2]|max_length[250]|alpha_numeric_spaces',
+                'rules' => 'required|min_length[2]|max_length[500]|alpha_numeric_spaces',
                 'errors' => array(
                     'required' => 'El %s es requerido.',
                     'min_length' => 'El %s contiene muy pocos caracteres',
@@ -240,19 +240,6 @@ if(!function_exists('actualizarReglasCorregimientos')){
               
                 )
             ),
-          
-            array(
-                'field' => 'longitudnombre',
-                'label' => 'Nombre longitud ',
-                'rules' => 'required|min_length[1]|max_length[250]|alpha',
-                'errors' => array(
-                    'required' => 'El %s es requerido.',
-                    'min_length' => 'El %s contiene muy pocos caracteres',
-                    'max_length' => 'El %s contiene muchos caracteres',
-                    'alpha' => 'El %s contiene caracteres no alfabeticos o latinos'
-                )
-            ),
-           
             array(
                 'field' => 'nautoridadprincipal',
                 'label' => 'Nombre autoridad principal',
@@ -278,7 +265,7 @@ if(!function_exists('actualizarReglasCorregimientos')){
             array(
                 'field' => 'miembrosjal',
                 'label' => 'Miembros de la JAL',
-                'rules' => 'required|min_length[2]|max_length[250]',
+                'rules' => 'required|min_length[2]|max_length[500]',
                 'errors' => array(
                     'required' => ' %s es requerido.',
                     'min_length' => ' %s contiene muy pocos caracteres',

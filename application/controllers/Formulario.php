@@ -97,13 +97,12 @@ class Formulario extends CI_Controller
 	}
 	public function  buscarlistado($page = 1)
 	{
-		redirect("/formulario/mostrarCorregimientos/1?busqueda=" . $this->input->get('busqueda') . "&campo=" . $this->input->get('campo') . "&num_registros=" . $this->input->get('num_registros'));
+		redirect("/formulario/mostrarCorregimientos/1?busqueda=" . $this->input->get('busqueda') . "&campo=" . $this->input->get('campo'));
 	}
 	public function mostrarCorregimientos($page = 1)
 	{
 	
 		$page--;
-		$num_registros = $this->input->get('num_registros');
 		$busqueda = $this->input->get('busqueda');
 		$campo = $this->input->get('campo');
 		$page_size = 20;
@@ -111,16 +110,13 @@ class Formulario extends CI_Controller
 		if ($page < 0) {
 			$page = 0;
 		}
-		if ($num_registros != "" && $num_registros != null && is_numeric($num_registros)) {
-			$page_size = $num_registros;
-		}
+	
 
 		$offset = $page * $page_size;
 
 		$data['corregimientos'] = $this->ModelsCorregimientos->paginar($page_size, $offset, $busqueda, $campo);
 		$data["current"] = $page + 1;
 		$data["busqueda"] = $busqueda;
-		$data["num_registros"] = $num_registros;
 		$data["campo"] = $campo;
 		$data["last_pag"] = ceil($this->ModelsCorregimientos->contarRegistros($busqueda) / $page_size);
 		$this->ModelsCorregimientos->obtenerCorregimientos();
@@ -129,8 +125,11 @@ class Formulario extends CI_Controller
 	public function editar($id_corregimiento = 0)
 	{
 		$corregimientos = $this->ModelsCorregimientos->getCorregimientos($id_corregimiento);
+
 		$view = $this->load->view('accionesFormulario/editarCorregimiento', array('corregimientos' => $corregimientos), true);
+	
 		$this->getTemplate($view);
+	
 	}
 
 	public function actualizar()
@@ -146,6 +145,7 @@ class Formulario extends CI_Controller
 		$ubicacionlatitud = $this->input->post('ubicacionlatitud');
 		$area = $this->input->post('area');
 		$longitud = $this->input->post('longitud');
+		
 		$nautoridadprincipal = $this->input->post('nautoridadprincipal');
 		$nautoridadpolicial = $this->input->post('nautoridadpolicial');
 		$miembrosjal = $this->input->post('miembrosjal');
@@ -176,7 +176,7 @@ class Formulario extends CI_Controller
 				'fechae' =>  mdate($datestring, $time)
 			);
 			$this->ModelsCorregimientos->actualizar($id_corregimiento, $corregimiento);
-			$this->session->set_flashdata('msg', 'El registro identificado con el id :' . $id_corregimiento . ' fue actualizado correctamente');
+			$this->session->set_flashdata('msg', 'El registro identificado con el id : ' . $id_corregimiento . ' fue actualizado correctamente');
 			redirect(base_url('formulario/mostrarCorregimientos'));
 		}
 	}
