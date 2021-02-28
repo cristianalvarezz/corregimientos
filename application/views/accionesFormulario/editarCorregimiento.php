@@ -50,7 +50,7 @@
                             <div class="form-row">
                                 <div class="col-md-12 mb-3">
                                     <label for="longitud">Longitud (tomada con el celular)</label>
-                                    <input name="longitud" type="file" class="form-control" id="longitud" value="<?= set_value('longitud', isset($corregimientos['longitud']) ? $corregimientos['longitud']  : '') ?>">
+                                    <input name="longitud" type="file" class="form-control" id="longitud" value="<?= set_value('longitud', isset($corregimientos['longitud']) ? $corregimientos['longitud']  : '') ?>" >
                                 
                                 </div>
                             </div>

@@ -80,8 +80,7 @@
                                 <td><?= $item->pobladores ?></td>
                                 <td><?= $item->ubicacionlatitud ?></td>
                                 <td><?= $item->area ?></td>
-                                <td><?= $item->longitud ?><img src="../<?php echo $item->longitud ?>" width="50" height="50" ></td>
-                         
+                                <td><?= $item->longitud ?><img src="<?= base_url().$item->longitud ?>" width="100" height="100" ></td>
                                 <td><?= $item->nautoridadprincipal ?></td>
                                 <td><?= $item->nautoridadpolicial ?></td>
                                 <td><?= $item->miembrosjal ?></td>

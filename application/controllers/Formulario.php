@@ -16,7 +16,8 @@ class Formulario extends CI_Controller
 	}
 	public function index()
 	{
-		$this->getTemplate($this->load->view('accionesFormulario/formulario', '', TRUE));
+	
+		$this->getTemplate($this->load->view('accionesFormulario/formulario','', TRUE));
 	}
 
 	public function store()
@@ -41,7 +42,6 @@ class Formulario extends CI_Controller
 	
 		$this->form_validation->set_rules(obtenerReglasCorregimientos());
 		if ($this->form_validation->run() == FALSE) {
-
 			$this->getTemplate($this->load->view('accionesFormulario/formulario', '', TRUE));
 			$this->output->set_status_header(400);
 		} else {
@@ -106,7 +106,7 @@ class Formulario extends CI_Controller
 		$num_registros = $this->input->get('num_registros');
 		$busqueda = $this->input->get('busqueda');
 		$campo = $this->input->get('campo');
-		$page_size = 10;
+		$page_size = 20;
 
 		if ($page < 0) {
 			$page = 0;
@@ -155,7 +155,7 @@ class Formulario extends CI_Controller
 	
 
 
-		$this->form_validation->set_rules(obtenerReglasCorregimientos());
+		$this->form_validation->set_rules(actualizarReglasCorregimientos());
 		if ($this->form_validation->run() == FALSE) {
 			$this->getTemplate($this->load->view('accionesFormulario/editarCorregimiento', '', TRUE));
 			$this->output->set_status_header(400);
