@@ -15,8 +15,8 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="municipio">Municipio al que pertenece*</label>
-                                <select class="form-control" name="municipio">
-                                    <option value="municipio">Seleccione Municipio al que pertence</option>
+                                <select class="form-control" name="municipio" required>
+                                    <option value="">Seleccione Municipio al que pertence</option>
                                     <?php foreach ($data as $row) { ?>
                                         <option value="<?= $row; ?>"><?= $row; ?></option>
                                     <?php } ?>
@@ -48,15 +48,10 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-12 mb-3">
                                 <label for="longitud">Longitud (tomada con el celular)*</label>
                                 <input name="longitud" type="file" class="form-control" value="<?= set_value('longitud') ?>" required accept="image/png,image/jpeg">
 
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="longitudnombre">Nombre Foto Longitud*</label>
-                                <input name="longitudnombre" type="text" class="form-control" id="longitudnombre" value="<?= set_value('longitudnombre') ?>" maxlength="52" data-toggle="tooltip" title="Por favor digita nombres sin caracteres latinos o espacios.">
-                                <?= form_error('longitudnombre', '<p class="text-danger">', '</p>') ?>
                             </div>
                         </div>
 

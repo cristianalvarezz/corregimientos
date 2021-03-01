@@ -20,8 +20,8 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                 <label for="municipio">Municipio al que pertenece*</label>
-                                <select class="form-control" name="municipio">
-                                    <option value="<?= set_value('municipio', isset($corregimientos["corregimientos"]['municipio']) ? $corregimientos["corregimientos"]['municipio'] : '') ?>"><?= set_value('municipio', isset($corregimientos["corregimientos"]['municipio']) ? $corregimientos["corregimientos"]['municipio'] : '') ?></option>
+                                <select class="form-control" name="municipio" >
+                                    <option value="<?=$corregimientos["corregimientos"]['municipio']?>"><?= set_value('municipio', isset($corregimientos["corregimientos"]['municipio']) ? $corregimientos["corregimientos"]['municipio'] : '') ?></option>
                                     <?php foreach ($municipios['municipios'] as $row) { ?>
                                         <option value="<?= $row; ?>"><?= $row; ?></option>
                                     <?php } ?>
@@ -52,6 +52,12 @@
                                     <?= form_error('area', '<p class="text-danger">', '</p>') ?>
                                 </div>
                             </div>
+                            <div class="form-row">
+                            <div class="col-md-12 mb-3">
+                                <label for="longitud">Longitud (tomada con el celular)*</label>
+                                <input name="longitud" type="file" class="form-control"  value="<?=base_url().$corregimientos['corregimientos']['longitud']?>" accept="image/png,image/jpeg">
+                            </div>
+                        </div>
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
                                     <label for="nautoridadprincipal">Nombre autoridad principal*</label>

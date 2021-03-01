@@ -66,17 +66,6 @@ if(!function_exists('obtenerReglasCorregimientos')){
                 )
             ),
           
-            array(
-                'field' => 'longitudnombre',
-                'label' => 'Nombre longitud ',
-                'rules' => 'required|min_length[1]|max_length[250]|alpha',
-                'errors' => array(
-                    'required' => 'El %s es requerido.',
-                    'min_length' => 'El %s contiene muy pocos caracteres',
-                    'max_length' => 'El %s contiene muchos caracteres',
-                    'alpha' => 'El %s contiene caracteres no alfabeticos o latinos'
-                )
-            ),
            
             array(
                 'field' => 'nautoridadprincipal',

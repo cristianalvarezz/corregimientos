@@ -30,7 +30,6 @@ class Formulario extends CI_Controller
 		$pobladores = $this->input->post('pobladores');
 		$ubicacionlatitud = $this->input->post('ubicacionlatitud');
 		$area = $this->input->post('area');
-		$longitudnombre = $this->input->post('longitudnombre');
 		$longitud =  $_FILES["longitud"]["name"];
 		$nautoridadprincipal = $this->input->post('nautoridadprincipal');
 		$nautoridadpolicial = $this->input->post('nautoridadpolicial');
@@ -40,6 +39,7 @@ class Formulario extends CI_Controller
 		$numeroadministrativo = $this->input->post('numeroadministrativo');
 
 
+		$formato = $this->guardarimagen($longitud);
 
 
 		$this->form_validation->set_rules(obtenerReglasCorregimientos());
@@ -55,7 +55,7 @@ class Formulario extends CI_Controller
 				'pobladores' => $pobladores,
 				'ubicacionlatitud' => $ubicacionlatitud,
 				'area' => $area,
-				'longitud' => $this->guardarimagen($longitud, $longitudnombre),
+				'longitud' => $this->guardarimagen($longitud),
 				'nautoridadprincipal' => $nautoridadprincipal,
 				'nautoridadpolicial' => $nautoridadpolicial,
 				'miembrosjal' => $miembrosjal,
@@ -74,14 +74,13 @@ class Formulario extends CI_Controller
 		}
 	}
 
-	public function guardarimagen($longitud, $longitudnombre)
+	public function guardarimagen($longitud)
 	{
 
-		var_dump($longitud);
-		$formato = explode('.', $longitud);
+		$nombre = $longitud;
 		$longitud = 'longitud';
 		$config['upload_path'] = 'upload/';
-		$config['file_name'] = $longitudnombre;
+		$config['file_name'] =  $nombre;
 		$config['allowed_types'] = "jpg|png";
 		$config['max_size'] = "5000";
 		$config['max_width'] = "2000";
@@ -94,7 +93,7 @@ class Formulario extends CI_Controller
 		$this->load->library('upload', $config);
 		$this->upload->initialize($config);
 
-		return $config['upload_path'] . $config['file_name'] . "." . $formato[1];
+		return $config['upload_path'] . $config['file_name'];
 	}
 	public function  buscarlistado($page = 1)
 	{
@@ -145,6 +144,7 @@ class Formulario extends CI_Controller
 		$veredas = $this->input->post('veredas');
 		$pobladores = $this->input->post('pobladores');
 		$ubicacionlatitud = $this->input->post('ubicacionlatitud');
+		$longitud =  $_FILES["longitud"]["name"];
 		$area = $this->input->post('area');
 		$nautoridadprincipal = $this->input->post('nautoridadprincipal');
 		$nautoridadpolicial = $this->input->post('nautoridadpolicial');
@@ -161,21 +161,41 @@ class Formulario extends CI_Controller
 			$this->getTemplate($this->load->view('accionesFormulario/editarCorregimiento', array('municipios' => $municipios), TRUE));
 			$this->output->set_status_header(400);
 		} else {
-			$corregimiento = array(
-				'nombrecorregimiento' => $nombrecorregimiento,
-				'municipio' => $municipio,
-				'veredas' => $veredas,
-				'pobladores' => $pobladores,
-				'ubicacionlatitud' => $ubicacionlatitud,
-				'area' => $area,
-				'nautoridadprincipal' => $nautoridadprincipal,
-				'nautoridadpolicial' => $nautoridadpolicial,
-				'miembrosjal' => $miembrosjal,
-				'jal' => $jal,
-				'codigodane' => $codigodane,
-				'numeroadministrativo' => $numeroadministrativo,
-				'fechae' =>  mdate($datestring, $time)
-			);
+			if ($longitud != "" || $longitud != NULL) {
+				$corregimiento = array(
+					'nombrecorregimiento' => $nombrecorregimiento,
+					'municipio' => $municipio,
+					'veredas' => $veredas,
+					'pobladores' => $pobladores,
+					'ubicacionlatitud' => $ubicacionlatitud,
+					'area' => $area,
+					'longitud' => $this->guardarimagen($longitud),
+					'nautoridadprincipal' => $nautoridadprincipal,
+					'nautoridadpolicial' => $nautoridadpolicial,
+					'miembrosjal' => $miembrosjal,
+					'jal' => $jal,
+					'codigodane' => $codigodane,
+					'numeroadministrativo' => $numeroadministrativo,
+					'fechae' =>  mdate($datestring, $time)
+				);
+			} else {
+				$corregimiento = array(
+					'nombrecorregimiento' => $nombrecorregimiento,
+					'municipio' => $municipio,
+					'veredas' => $veredas,
+					'pobladores' => $pobladores,
+					'ubicacionlatitud' => $ubicacionlatitud,
+					'area' => $area,
+					'nautoridadprincipal' => $nautoridadprincipal,
+					'nautoridadpolicial' => $nautoridadpolicial,
+					'miembrosjal' => $miembrosjal,
+					'jal' => $jal,
+					'codigodane' => $codigodane,
+					'numeroadministrativo' => $numeroadministrativo,
+					'fechae' =>  mdate($datestring, $time)
+				);
+			}
+
 			$this->ModelsCorregimientos->actualizar($id_corregimiento, $corregimiento);
 			$this->session->set_flashdata('msg', 'El registro identificado con el id : ' . $id_corregimiento . ' fue actualizado correctamente');
 			redirect(base_url('formulario/mostrarCorregimientos'));
