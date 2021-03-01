@@ -205,7 +205,7 @@ if(!function_exists('actualizarReglasCorregimientos')){
             array(
                 'field' => 'pobladores',
                 'label' => 'Número de pobladores aproximado',
-                'rules' => 'required|min_length[1]|max_length[250]|is_natural|greater_than[0]|less_than[1000000]',
+                'rules' => 'required|min_length[1]|max_length[250]|is_natural|greater_than[0]|less_than[10000000]',
                 'errors' => array(
                     'required' => 'La %s es requerido.',
                     'min_length' => 'El %s contiene muy pocos caracteres',

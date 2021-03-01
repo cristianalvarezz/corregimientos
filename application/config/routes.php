@@ -64,7 +64,7 @@ $route['formulario/mostrarCorregimientos/getTemplate']='none';
 
 
 $route['formulario/editar']='none';
-$route['formulario/eliminar']='none';
+
 $route['formulario/guardarimagen']='none';
 
 $route['formulario/getTemplate']='none';
