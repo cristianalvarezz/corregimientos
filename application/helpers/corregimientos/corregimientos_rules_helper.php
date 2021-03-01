@@ -14,17 +14,17 @@ if(!function_exists('obtenerReglasCorregimientos')){
                 )
             ),
 
-            array(
-                'field' => 'municipio',
-                'label' => 'Nombre del municipio',
-                'rules' => 'required|min_length[2]|max_length[250]|alpha_numeric_spaces',
-                'errors' => array(
-                    'required' => 'El %s es requerido.',
-                    'min_length' => 'El %s contiene muy pocos caracteres',
-                    'max_length' => 'El %s contiene muchos caracteres',
-                    'alpha_numeric_spaces' => 'El %s contiene caracteres no alfabeticos'
-                )
-            ),
+            // array(
+            //     'field' => 'municipio',
+            //     'label' => 'Nombre del municipio',
+            //     'rules' => 'required|min_length[2]|max_length[250]|alpha_numeric_spaces',
+            //     'errors' => array(
+            //         'required' => 'El %s es requerido.',
+            //         'min_length' => 'El %s contiene muy pocos caracteres',
+            //         'max_length' => 'El %s contiene muchos caracteres',
+            //         'alpha_numeric_spaces' => 'El %s contiene caracteres no alfabeticos'
+            //     )
+            // ),
 
             array(
                 'field' => 'veredas',

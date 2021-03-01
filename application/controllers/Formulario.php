@@ -12,12 +12,14 @@ class Formulario extends CI_Controller
 
 		$this->load->helper(array('corregimientos/corregimientos_rules', 'string'));
 		$this->load->model('ModelsCorregimientos');
+		$this->load->model('ModelsMunicipios');
 		$this->load->helper('date');
 	}
 	public function index()
 	{
+		$data=$this->ModelsMunicipios->obtenerMunicipios();
 	
-		$this->getTemplate($this->load->view('accionesFormulario/formulario','', TRUE));
+		$this->getTemplate($this->load->view('accionesFormulario/formulario',array('data' => $data), TRUE));
 	}
 
 	public function store()
