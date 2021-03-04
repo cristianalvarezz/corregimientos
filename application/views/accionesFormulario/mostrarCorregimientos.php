@@ -36,7 +36,7 @@
                             <option value="codigodane">Código Dane</option>
                             <option value="numeroadministrativo">Número acto administrativo</option>
                         </select>
-                        <!-- <input name="num_registros" type="number" class="form-control" min="1" pattern="^[5-9]+" class="h-50 d-inline-block" style="width : 1px; heigth : 1px" > -->
+
                         <button class="btn btn-primary" type="submit">Buscar</button>
                     </div>
                 </form>
@@ -62,9 +62,6 @@
                                 <th scope="col">Fecha edición registro</th>
                                 <th scope="col">Editar</th>
                                 <th scope="col">Eliminar</th>
-
-
-
                             </tr>
                         </thead>
                         <tbody>
@@ -75,12 +72,13 @@
                                     <td scope="row"><?= $item->id_corregimiento ?></td>
                                     <td><?= $item->nombrecorregimiento ?></td>
                                     <td><?= $item->municipio ?></td>
-                                    <td ><div class="text-justify"><?= $item->veredas ?></div></td>
+                                    <td>
+                                        <div class="text-justify"><?= $item->veredas ?></div>
+                                    </td>
                                     <td><?= $item->pobladores ?></td>
                                     <td><?= $item->ubicacionlatitud ?></td>
                                     <td><?= $item->area ?></td>
-                                    <?php $formato = explode("/", $item->longitud) ?>
-                                    <td><?= $formato[1]  ?><img src="<?= base_url() . $item->longitud ?>" width="100" height="100"></td>
+                                    <td><?= $item->longitud  ?><img src="<?= base_url() . $item->longitud ?>" width="100" height="100"></td>
                                     <td><?= $item->nautoridadprincipal ?></td>
                                     <td><?= $item->nautoridadpolicial ?></td>
                                     <td><?= $item->miembrosjal ?></td>
@@ -98,9 +96,7 @@
                         <?php endforeach; ?>
                         </tr>
                         </tbody>
-
                     </table>
-
                     <div style="height: 10px;"></div>
                     <div class="container">
                         <nav aria-label="Page navigation example">

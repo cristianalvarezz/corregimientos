@@ -112,3 +112,4 @@ class ModelsCorregimientos extends CI_Model
         return   $query1->row_array();
     }
 }
+

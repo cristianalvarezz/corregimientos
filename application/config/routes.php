@@ -61,10 +61,6 @@ $route['formulario/mostrarCorregimientos/mostrarCorregimientos']='none';
 $route['formulario/mostrarCorregimientos/guardarimagen']='none';
 $route['formulario/mostrarCorregimientos/buscarlistado']='none';
 $route['formulario/mostrarCorregimientos/getTemplate']='none';
-
-
 $route['formulario/editar']='none';
-
 $route['formulario/guardarimagen']='none';
-
 $route['formulario/getTemplate']='none';

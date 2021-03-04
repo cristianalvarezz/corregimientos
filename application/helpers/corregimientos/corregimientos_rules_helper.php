@@ -14,27 +14,16 @@ if(!function_exists('obtenerReglasCorregimientos')){
                 )
             ),
 
-            array(
-                'field' => 'municipio',
-                'label' => 'Nombre del municipio',
-                'rules' => 'required|min_length[2]|max_length[250]|alpha_numeric_spaces',
-                'errors' => array(
-                    'required' => 'El %s es requerido.',
-                    'min_length' => 'El %s contiene muy pocos caracteres',
-                    'max_length' => 'El %s contiene muchos caracteres',
-                    'alpha_numeric_spaces' => 'El %s contiene caracteres no alfabeticos'
-                )
-            ),
 
             array(
                 'field' => 'veredas',
                 'label' => 'Nombre de la vereda',
-                'rules' => 'required|min_length[2]|max_length[500]|alpha_numeric_spaces',
+                'rules' => 'required|min_length[2]|max_length[500]',
                 'errors' => array(
                     'required' => 'El %s es requerido.',
                     'min_length' => 'El %s contiene muy pocos caracteres',
-                    'max_length' => 'El %s contiene muchos caracteres',
-                    'alpha_numeric_spaces' => 'El %s contiene caracteres no alfabeticos'
+                    'max_length' => 'El %s contiene muchos caracteres'
+                   
                 )
             ),
 
@@ -66,26 +55,13 @@ if(!function_exists('obtenerReglasCorregimientos')){
             array(
                 'field' => 'area',
                 'label' => 'Area en km',
-                'rules' => 'required|min_length[1]|max_length[250]|greater_than[0]|less_than[10000000]',
+                'rules' => 'required|min_length[1]|max_length[250]|decimal',
                 'errors' => array(
                     'required' => 'El %s es requerido.',
                     'min_length' => 'El %s contiene muy pocos caracteres',
-                    'max_length' => 'El %s contiene muchos caracteres',
-                    'greater_than'=>'El %s debe ser mayor a cero',
-                    'less_than' =>  'El %s es demasiado grande',
+                    'max_length' => 'El %s contiene muchos caracteres',      
+                    'decimal' =>  'El %s no es un numero decimal',
               
-                )
-            ),
-          
-            array(
-                'field' => 'longitudnombre',
-                'label' => 'Nombre longitud ',
-                'rules' => 'required|min_length[1]|max_length[250]|alpha',
-                'errors' => array(
-                    'required' => 'El %s es requerido.',
-                    'min_length' => 'El %s contiene muy pocos caracteres',
-                    'max_length' => 'El %s contiene muchos caracteres',
-                    'alpha' => 'El %s contiene caracteres no alfabeticos o latinos'
                 )
             ),
            
@@ -178,27 +154,17 @@ if(!function_exists('actualizarReglasCorregimientos')){
                 )
             ),
 
-            array(
-                'field' => 'municipio',
-                'label' => 'Nombre del municipio',
-                'rules' => 'required|min_length[2]|max_length[250]|alpha_numeric_spaces',
-                'errors' => array(
-                    'required' => 'El %s es requerido.',
-                    'min_length' => 'El %s contiene muy pocos caracteres',
-                    'max_length' => 'El %s contiene muchos caracteres',
-                    'alpha_numeric_spaces' => 'El %s contiene caracteres no alfabeticos'
-                )
-            ),
+
 
             array(
                 'field' => 'veredas',
                 'label' => 'Nombre de la vereda',
-                'rules' => 'required|min_length[2]|max_length[500]|alpha_numeric_spaces',
+                'rules' => 'required|min_length[2]|max_length[500]',
                 'errors' => array(
                     'required' => 'El %s es requerido.',
                     'min_length' => 'El %s contiene muy pocos caracteres',
                     'max_length' => 'El %s contiene muchos caracteres',
-                    'alpha_numeric_spaces' => 'El %s contiene caracteres no alfabeticos'
+                 
                 )
             ),
 
@@ -230,13 +196,12 @@ if(!function_exists('actualizarReglasCorregimientos')){
             array(
                 'field' => 'area',
                 'label' => 'Area en km',
-                'rules' => 'required|min_length[1]|max_length[250]|greater_than[0]|less_than[10000000]',
+                'rules' => 'required|min_length[1]|max_length[250]|decimal',
                 'errors' => array(
                     'required' => 'El %s es requerido.',
                     'min_length' => 'El %s contiene muy pocos caracteres',
-                    'max_length' => 'El %s contiene muchos caracteres',
-                    'greater_than'=>'El %s debe ser mayor a cero',
-                    'less_than' =>  'El %s es demasiado grande',
+                    'max_length' => 'El %s contiene muchos caracteres',      
+                    'decimal' =>  'El %s no es un numero decimal',
               
                 )
             ),
